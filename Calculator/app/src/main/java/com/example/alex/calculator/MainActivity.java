@@ -13,36 +13,47 @@ import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 
-    private int screen = 0;
+    private int total = 0;
     private String command = "";
 
     public void onButtonClick(View v){
         Button btn = (Button) v;
-        String bText;
-        bText = btn.getText().toString();
+        TextView myTextView = (TextView) findViewById(R.id.textView);
+        String bText = btn.getText().toString();
+        String screenStr = (String) myTextView.getText();
         int val = Integer.parseInt(bText);
-        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
-            screen += val;
+        if(total != 0){
+            screenStr = screenStr + bText;
+            val = Integer.parseInt(screenStr);
         }
         else{
-            if(command == "multiply"){
-
-            }
-            else if(command == "add"){
-
-            }
-            else if(command == "minus"){
-
-            }
-            else if(command == "divide"){
-
-            }
-            else{
-
-            }
+            screenStr = bText;
         }
-        TextView myTextView = (TextView) findViewById(R.id.textView);
-        myTextView.setText(Integer.toString(screen));
+        total = val;
+
+
+
+//        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+//            screen += val;
+//        }
+//        else{
+//            if(command == "multiply"){
+//
+//            }
+//            else if(command == "add"){
+//
+//            }
+//            else if(command == "minus"){
+//
+//            }
+//            else if(command == "divide"){
+//
+//            }
+//            else{
+//
+//            }
+//        }
+        myTextView.setText(Integer.toString(val));
     }
 
     public void onCommandClick(View v){
