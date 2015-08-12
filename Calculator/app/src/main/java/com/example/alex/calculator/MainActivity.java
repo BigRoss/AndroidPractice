@@ -1,5 +1,6 @@
 package com.example.alex.calculator;
 
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,16 +13,52 @@ import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 
-    private int total = 0;
+    private int screen = 0;
+    private String command = "";
 
     public void onButtonClick(View v){
         Button btn = (Button) v;
         String bText;
         bText = btn.getText().toString();
         int val = Integer.parseInt(bText);
-        total += val;
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+            screen += val;
+        }
+        else{
+            if(command == "multiply"){
+
+            }
+            else if(command == "add"){
+
+            }
+            else if(command == "minus"){
+
+            }
+            else if(command == "divide"){
+
+            }
+            else{
+
+            }
+        }
         TextView myTextView = (TextView) findViewById(R.id.textView);
-        myTextView.setText(Integer.toString(total));
+        myTextView.setText(Integer.toString(screen));
+    }
+
+    public void onCommandClick(View v){
+        Button com = (Button) v;
+        if(v.getId() == R.id.buttonD){
+            command = "divide";
+        }
+        else if(v.getId() == R.id.buttonM){
+            command = "minus";
+        }
+        else if(v.getId() == R.id.buttonx){
+            command = "multiply";
+        }
+        else if(v.getId() == R.id.buttonP){
+            command = "add";
+        }
     }
 
     @Override
